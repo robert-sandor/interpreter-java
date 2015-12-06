@@ -27,6 +27,15 @@ public class ArrayList implements IList<String> {
     }
 
     @Override
+    public void update(Integer index, String element) throws IndexOutOfBoundsException {
+        if (index < 0 || index >= size) {
+            throw new IndexOutOfBoundsException();
+        }
+
+        array[index] = element;
+    }
+
+    @Override
     public String get(Integer index) throws IndexOutOfBoundsException {
         if (index < 0 || index >= size) {
             throw new IndexOutOfBoundsException();

@@ -1,6 +1,7 @@
 package ro.sandorrobertk94.domain.expressions;
 
 import ro.sandorrobertk94.domain.adts.IDictionary;
+import ro.sandorrobertk94.domain.adts.IList;
 import ro.sandorrobertk94.exceptions.domain.DomainException;
 
 /**
@@ -14,7 +15,7 @@ public class ConstantExpression implements IExpression {
     }
 
     @Override
-    public Integer evaluate(IDictionary<String, Integer> symbolTable) throws DomainException {
+    public Integer evaluate(IDictionary<String, Integer> symbolTable, IList<Integer> heap) throws DomainException {
         return value;
     }
 

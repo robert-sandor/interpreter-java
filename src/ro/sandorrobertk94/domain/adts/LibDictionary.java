@@ -8,21 +8,21 @@ import java.util.HashMap;
 /**
  * Created by robert on 12/6/15.
  */
-public class LibDictionary implements IDictionary<String, Integer> {
-    private HashMap<String, Integer> map;
+public class LibDictionary<K, V> implements IDictionary<K, V> {
+    private HashMap<K, V> map;
 
     public LibDictionary() {
         map = new HashMap<>();
     }
 
     @Override
-    public void put(String key, Integer value) throws ArrayOverflowException {
+    public void put(K key, V value) throws ArrayOverflowException {
         map.put(key, value);
     }
 
     @Override
-    public Integer get(String key) throws KeyNotFoundException {
-        Integer v = map.get(key);
+    public V get(K key) throws KeyNotFoundException {
+        V v = map.get(key);
 
         if (v == null) {
             throw new KeyNotFoundException();
@@ -44,8 +44,8 @@ public class LibDictionary implements IDictionary<String, Integer> {
     @Override
     public String toString() {
         String output = "";
-        for (String key : map.keySet()) {
-            output += key + " => " + map.get(key).toString() + "\n";
+        for (K key : map.keySet()) {
+            output += key.toString() + " => " + map.get(key).toString() + "\n";
         }
         return output;
     }

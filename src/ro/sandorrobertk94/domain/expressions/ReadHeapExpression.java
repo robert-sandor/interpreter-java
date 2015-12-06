@@ -7,24 +7,21 @@ import ro.sandorrobertk94.exceptions.domain.DomainException;
 /**
  * Created by robert on 12/6/15.
  */
-public class VariableExpression implements IExpression {
+public class ReadHeapExpression implements IExpression {
     private String varname;
 
-    public VariableExpression(String varname) {
+    public ReadHeapExpression(String varname) {
         this.varname = varname;
-    }
-
-    public String getVarname() {
-        return varname;
     }
 
     @Override
     public Integer evaluate(IDictionary<String, Integer> symbolTable, IList<Integer> heap) throws DomainException {
-        return symbolTable.get(varname);
+        Integer address = symbolTable.get(varname);
+        return heap.get(address);
     }
 
     @Override
     public String toString() {
-        return varname;
+        return " read_heap ( " + varname + " ) ";
     }
 }

@@ -1,6 +1,5 @@
 package ro.sandorrobertk94.domain.adts;
 
-import ro.sandorrobertk94.domain.statements.IStatement;
 import ro.sandorrobertk94.exceptions.domain.ArrayOverflowException;
 import ro.sandorrobertk94.exceptions.domain.EmptyStackException;
 
@@ -9,20 +8,20 @@ import java.util.Stack;
 /**
  * Created by robert on 12/6/15.
  */
-public class LibStack implements IStack<IStatement> {
-    private Stack<IStatement> stack;
+public class LibStack<E> implements IStack<E> {
+    private Stack<E> stack;
 
     public LibStack() {
         stack = new Stack<>();
     }
 
     @Override
-    public void push(IStatement element) throws ArrayOverflowException {
+    public void push(E element) throws ArrayOverflowException {
         stack.push(element);
     }
 
     @Override
-    public IStatement pop() throws EmptyStackException {
+    public E pop() throws EmptyStackException {
         try {
             return stack.pop();
         } catch (java.util.EmptyStackException e) {
@@ -31,7 +30,7 @@ public class LibStack implements IStack<IStatement> {
     }
 
     @Override
-    public IStatement top() throws EmptyStackException {
+    public E top() throws EmptyStackException {
         try {
             return stack.peek();
         } catch (java.util.EmptyStackException e) {
@@ -47,7 +46,7 @@ public class LibStack implements IStack<IStatement> {
     @Override
     public String toString() {
         String output = "";
-        for (IStatement statement : stack) {
+        for (E statement : stack) {
             output += statement.toString() + "\n";
         }
         return output;

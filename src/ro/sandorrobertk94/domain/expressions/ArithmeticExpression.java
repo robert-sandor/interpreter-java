@@ -1,6 +1,7 @@
 package ro.sandorrobertk94.domain.expressions;
 
 import ro.sandorrobertk94.domain.adts.IDictionary;
+import ro.sandorrobertk94.domain.adts.IList;
 import ro.sandorrobertk94.exceptions.domain.DivisionByZeroException;
 import ro.sandorrobertk94.exceptions.domain.DomainException;
 
@@ -23,24 +24,24 @@ public class ArithmeticExpression implements IExpression {
     }
 
     @Override
-    public Integer evaluate(IDictionary<String, Integer> symbolTable) throws DomainException {
+    public Integer evaluate(IDictionary<String, Integer> symbolTable, IList<Integer> heap) throws DomainException {
         Integer value = 0;
         switch (operator) {
             case ADD:
-                value = leftExpression.evaluate(symbolTable) + rightExpression.evaluate(symbolTable);
+                value = leftExpression.evaluate(symbolTable, heap) + rightExpression.evaluate(symbolTable, heap);
                 break;
             case SUB:
-                value = leftExpression.evaluate(symbolTable) - rightExpression.evaluate(symbolTable);
+                value = leftExpression.evaluate(symbolTable, heap) - rightExpression.evaluate(symbolTable, heap);
                 break;
             case MUL:
-                value = leftExpression.evaluate(symbolTable) * rightExpression.evaluate(symbolTable);
+                value = leftExpression.evaluate(symbolTable, heap) * rightExpression.evaluate(symbolTable, heap);
                 break;
             case DIV:
-                Integer r = rightExpression.evaluate(symbolTable);
+                Integer r = rightExpression.evaluate(symbolTable, heap);
                 if (r == 0) {
                     throw new DivisionByZeroException();
                 }
-                value = leftExpression.evaluate(symbolTable) / r;
+                value = leftExpression.evaluate(symbolTable, heap) / r;
                 break;
         }
         return value;

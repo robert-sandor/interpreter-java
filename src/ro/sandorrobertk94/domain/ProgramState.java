@@ -15,11 +15,11 @@ public class ProgramState implements Serializable {
     private IStack<IStatement> executionStack;
     private IDictionary<String, Integer> symbolTable;
     private IList<String> output;
-    private IDictionary<String, Integer> heap;
+    private IList<Integer> heap;
     private IStatement originalProgram;
 
     public ProgramState(Integer id, IStack<IStatement> executionStack, IDictionary<String, Integer> symbolTable,
-                        IList<String> output, IDictionary<String, Integer> heap, IStatement originalProgram) {
+                        IList<String> output, IList<Integer> heap, IStatement originalProgram) {
         this.id = id;
         this.executionStack = executionStack;
         this.symbolTable = symbolTable;
@@ -44,7 +44,7 @@ public class ProgramState implements Serializable {
         return output;
     }
 
-    public IDictionary<String, Integer> getHeap() {
+    public IList<Integer> getHeap() {
         return heap;
     }
 

@@ -6,20 +6,29 @@ import ro.sandorrobertk94.exceptions.domain.IndexOutOfBoundsException;
 /**
  * Created by robert on 12/6/15.
  */
-public class LibList implements IList<String> {
-    private java.util.ArrayList<String> list;
+public class LibList<E> implements IList<E> {
+    private java.util.ArrayList<E> list;
 
     public LibList() {
         list = new java.util.ArrayList<>();
     }
 
     @Override
-    public void add(String element) throws ArrayOverflowException {
+    public void add(E element) throws ArrayOverflowException {
         list.add(element);
     }
 
     @Override
-    public String get(Integer index) throws IndexOutOfBoundsException {
+    public void update(Integer index, E element) throws IndexOutOfBoundsException {
+        try {
+            list.set(index, element);
+        } catch (java.lang.IndexOutOfBoundsException e) {
+            throw new IndexOutOfBoundsException();
+        }
+    }
+
+    @Override
+    public E get(Integer index) throws IndexOutOfBoundsException {
         try {
             return list.get(index);
         } catch (java.lang.IndexOutOfBoundsException e) {
@@ -40,8 +49,8 @@ public class LibList implements IList<String> {
     @Override
     public String toString() {
         String output = "";
-        for (String line : list) {
-            output += line + "\n";
+        for (E line : list) {
+            output += line.toString() + "\n";
         }
         return output;
     }
