@@ -1,7 +1,7 @@
 package ro.sandorrobertk94.exceptions;
 
 /**
- * Created by robert on 11/20/15.
+ * Created by robert on 12/6/15.
  */
 public abstract class InterpreterException extends Exception {
     public InterpreterException() {

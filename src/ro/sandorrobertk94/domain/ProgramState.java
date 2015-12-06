@@ -1,27 +1,35 @@
 package ro.sandorrobertk94.domain;
 
+import ro.sandorrobertk94.domain.adts.IDictionary;
+import ro.sandorrobertk94.domain.adts.IList;
+import ro.sandorrobertk94.domain.adts.IStack;
 import ro.sandorrobertk94.domain.statements.IStatement;
-import ro.sandorrobertk94.exceptions.util.ArrayOverflowException;
-import ro.sandorrobertk94.util.*;
+
+import java.io.Serializable;
 
 /**
- * Created by robert on 11/20/15.
+ * Created by robert on 12/6/15.
  */
-public class ProgramState {
-    IStack<IStatement> executionStack;
-    IDictionary<String, Integer> symbolTable;
-    IList<String> output;
-    IStatement originalProgram;
+public class ProgramState implements Serializable {
+    private Integer id;
+    private IStack<IStatement> executionStack;
+    private IDictionary<String, Integer> symbolTable;
+    private IList<String> output;
+    private IDictionary<String, Integer> heap;
+    private IStatement originalProgram;
 
-    public ProgramState(IStatement program) {
-        this.originalProgram = program;
-        this.executionStack = new LibraryStack();
-        this.symbolTable = new LibraryDictionary();
-        this.output = new LibraryList();
-        try {
-            this.executionStack.push(originalProgram);
-        } catch (ArrayOverflowException ignored) {
-        }
+    public ProgramState(Integer id, IStack<IStatement> executionStack, IDictionary<String, Integer> symbolTable,
+                        IList<String> output, IDictionary<String, Integer> heap, IStatement originalProgram) {
+        this.id = id;
+        this.executionStack = executionStack;
+        this.symbolTable = symbolTable;
+        this.output = output;
+        this.heap = heap;
+        this.originalProgram = originalProgram;
+    }
+
+    public Integer getId() {
+        return id;
     }
 
     public IStack<IStatement> getExecutionStack() {
@@ -36,16 +44,22 @@ public class ProgramState {
         return output;
     }
 
+    public IDictionary<String, Integer> getHeap() {
+        return heap;
+    }
+
     public IStatement getOriginalProgram() {
         return originalProgram;
     }
 
     @Override
     public String toString() {
-        String output = "Program :\n" + this.originalProgram.toString() + "\n";
-        output += "ExecutionStack :\n" + this.executionStack.toString() + "\n";
-        output += "SymbolTable :\n" + this.symbolTable.toString() + "\n";
-        output += "Output :\n" + this.output.toString() + "\n";
-        return output;
+        String o = "ID : " + id.toString() + "\n";
+        o += originalProgram.toString() + "\n\n";
+        o += "ExecutionStack {" + executionStack.toString() + "}\n";
+        o += "SymbolTable {" + symbolTable.toString() + "}\n";
+        o += "Heap {" + heap.toString() + "}\n";
+        o += "Output {" + output.toString() + "}\n";
+        return o;
     }
 }

@@ -1,9 +1,9 @@
-package ro.sandorrobertk94.exceptions.util;
+package ro.sandorrobertk94.exceptions.domain;
 
 /**
- * Created by robert on 11/20/15.
+ * Created by robert on 12/6/15.
  */
-public class KeyNotFoundException extends UtilException {
+public class KeyNotFoundException extends DomainException {
     public KeyNotFoundException() {
         super();
     }
