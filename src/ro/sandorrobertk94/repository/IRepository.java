@@ -13,5 +13,5 @@ public interface IRepository {
 
     void serialize(String filePath, ProgramState state) throws SerializationException;
     ProgramState deserialize(String filePath) throws DeserializationException;
-    void saveCurrentStateToFile(String filePath) throws SavingToFileException;
+    void saveStateToFile(ProgramState state, String filePath) throws SavingToFileException;
 }

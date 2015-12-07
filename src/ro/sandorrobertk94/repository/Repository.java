@@ -65,12 +65,12 @@ public class Repository implements IRepository {
     }
 
     @Override
-    public void saveCurrentStateToFile(String filePath) throws SavingToFileException {
+    public void saveStateToFile(ProgramState state, String filePath) throws SavingToFileException {
         try (
                 PrintWriter output = new PrintWriter(new BufferedWriter(new FileWriter(filePath, true)));
         ) {
-            output.println(programs.get(currentProgramIndex).toString());
-        } catch (IOException | IndexOutOfBoundsException ex) {
+            output.println(state.toString());
+        } catch (IOException ex) {
             throw new SavingToFileException();
         }
     }

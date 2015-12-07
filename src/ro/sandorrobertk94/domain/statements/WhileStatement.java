@@ -25,12 +25,13 @@ public class WhileStatement implements IStatement {
     }
 
     @Override
-    public void execute(ProgramState state) throws DomainException {
-        Integer value = expression.evaluate(state.getSymbolTable());
+    public ProgramState execute(ProgramState state) throws DomainException {
+        Integer value = expression.evaluate(state.getSymbolTable(), state.getHeap());
         if (value != 0) {
             state.getExecutionStack().push(this);
             state.getExecutionStack().push(statement);
         }
+        return state;
     }
 
     @Override

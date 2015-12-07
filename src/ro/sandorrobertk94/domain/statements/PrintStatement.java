@@ -19,8 +19,9 @@ public class PrintStatement implements IStatement {
     }
 
     @Override
-    public void execute(ProgramState state) throws DomainException {
-        state.getOutput().add(expression.evaluate(state.getSymbolTable()).toString());
+    public ProgramState execute(ProgramState state) throws DomainException {
+        state.getOutput().add(expression.evaluate(state.getSymbolTable(), state.getHeap()).toString());
+        return state;
     }
 
     @Override

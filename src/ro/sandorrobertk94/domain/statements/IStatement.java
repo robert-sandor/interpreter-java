@@ -9,6 +9,6 @@ import java.io.Serializable;
  * Created by robert on 12/6/15.
  */
 public interface IStatement extends Serializable {
-    void execute(ProgramState state) throws DomainException;
+    ProgramState execute(ProgramState state) throws DomainException;
     String toString();
 }

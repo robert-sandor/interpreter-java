@@ -17,9 +17,10 @@ public class NewStatement implements IStatement {
     }
 
     @Override
-    public void execute(ProgramState state) throws DomainException {
-        state.getHeap().add(expression.evaluate(state.getSymbolTable()));
+    public ProgramState execute(ProgramState state) throws DomainException {
+        state.getHeap().add(expression.evaluate(state.getSymbolTable(), state.getHeap()));
         state.getSymbolTable().put(varname, state.getHeap().size() - 1);
+        return state;
     }
 
     @Override

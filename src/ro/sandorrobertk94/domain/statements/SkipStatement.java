@@ -11,8 +11,8 @@ public class SkipStatement implements IStatement {
     }
 
     @Override
-    public void execute(ProgramState state) throws DomainException {
-
+    public ProgramState execute(ProgramState state) throws DomainException {
+        return state;
     }
 
     @Override

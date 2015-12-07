@@ -24,9 +24,10 @@ public class CompoundStatement implements IStatement {
     }
 
     @Override
-    public void execute(ProgramState state) throws DomainException {
+    public ProgramState execute(ProgramState state) throws DomainException {
         state.getExecutionStack().push(rightStatement);
         state.getExecutionStack().push(leftStatement);
+        return state;
     }
 
     @Override

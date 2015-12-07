@@ -52,7 +52,7 @@ public class SwitchStatement implements IStatement {
     }
 
     @Override
-    public void execute(ProgramState state) throws DomainException {
+    public ProgramState execute(ProgramState state) throws DomainException {
         state.getExecutionStack().push(
                 new IfStatement(
                         new ArithmeticExpression(
@@ -69,6 +69,7 @@ public class SwitchStatement implements IStatement {
                         ),
                         statement2
                 ));
+        return state;
     }
 
     @Override

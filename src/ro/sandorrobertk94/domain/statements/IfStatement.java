@@ -31,13 +31,14 @@ public class IfStatement implements IStatement {
     }
 
     @Override
-    public void execute(ProgramState state) throws DomainException {
-        Integer value = expression.evaluate(state.getSymbolTable());
+    public ProgramState execute(ProgramState state) throws DomainException {
+        Integer value = expression.evaluate(state.getSymbolTable(), state.getHeap());
         if (value != 0) {
             state.getExecutionStack().push(thenStatement);
         } else {
             state.getExecutionStack().push(elseStatement);
         }
+        return state;
     }
 
     @Override

@@ -19,7 +19,7 @@ public class WriteHeapStatement implements IStatement {
     }
 
     @Override
-    public void execute(ProgramState state) throws DomainException {
+    public ProgramState execute(ProgramState state) throws DomainException {
         Integer addr = state.getSymbolTable().get(varname);
 
         try {
@@ -27,6 +27,7 @@ public class WriteHeapStatement implements IStatement {
         } catch (IndexOutOfBoundsException e) {
             throw new InvalidHeapAddressException();
         }
+        return state;
     }
 
     @Override
