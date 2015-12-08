@@ -11,7 +11,7 @@ import java.util.Objects;
  */
 public class BooleanExpression implements IExpression {
     public enum Operator {
-        LESS, LESS_OR_EQUAL, EQUAL, NOTEQUAL, GREATER, GREATER_OR_EQUAL, AND, OR
+        LESS, LESS_OR_EQUAL, EQUAL, NOT_EQUAL, GREATER, GREATER_OR_EQUAL, AND, OR
     }
 
     private Operator operator;
@@ -39,7 +39,7 @@ public class BooleanExpression implements IExpression {
             case EQUAL:
                 value = (Objects.equals(l, r)) ? 1 : 0;
                 break;
-            case NOTEQUAL:
+            case NOT_EQUAL:
                 value = (!Objects.equals(l, r)) ? 1 : 0;
                 break;
             case GREATER:
@@ -71,7 +71,7 @@ public class BooleanExpression implements IExpression {
             case EQUAL:
                 op = " == ";
                 break;
-            case NOTEQUAL:
+            case NOT_EQUAL:
                 op = " != ";
                 break;
             case GREATER:

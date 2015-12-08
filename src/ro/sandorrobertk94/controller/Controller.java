@@ -20,9 +20,26 @@ public class Controller {
         writeToFile = false;
     }
 
+    public String getLogFilePath() {
+        return logFilePath;
+    }
+
+    public void setLogFilePath(String logFilePath) {
+        this.logFilePath = logFilePath;
+    }
+
+    public boolean isWriteToFile() {
+        return writeToFile;
+    }
+
+    public void setWriteToFile(boolean writeToFile) {
+        this.writeToFile = writeToFile;
+    }
+
     ProgramState oneStep(ProgramState state) throws ControllerException {
         IStack<IStatement> stack = state.getExecutionStack();
         IStatement currentStatement = stack.pop();
+        currentStatement.execute(state);
 
         if (writeToFile && logFilePath != null) {
             repository.saveStateToFile(state, logFilePath);
@@ -30,7 +47,7 @@ public class Controller {
             System.out.println(state.toString());
         }
 
-        return currentStatement.execute(state);
+        return state;
     }
 
     void allStep(ProgramState state) throws ControllerException {
