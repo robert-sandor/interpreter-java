@@ -46,9 +46,13 @@ public class LibStack<E> implements IStack<E> {
     @Override
     public String toString() {
         String output = "";
+
         for (E statement : stack) {
             output += statement.toString() + "\n";
         }
+
+//        output += stack.stream().map(e -> e.toString());
+
         return output;
     }
 }

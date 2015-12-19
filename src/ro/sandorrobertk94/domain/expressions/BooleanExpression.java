@@ -1,7 +1,7 @@
 package ro.sandorrobertk94.domain.expressions;
 
 import ro.sandorrobertk94.domain.adts.IDictionary;
-import ro.sandorrobertk94.domain.adts.IList;
+import ro.sandorrobertk94.domain.adts.IHeap;
 import ro.sandorrobertk94.exceptions.domain.DomainException;
 
 import java.util.Objects;
@@ -25,7 +25,7 @@ public class BooleanExpression implements IExpression {
     }
 
     @Override
-    public Integer evaluate(IDictionary<String, Integer> symbolTable, IList<Integer> heap) throws DomainException {
+    public Integer evaluate(IDictionary<String, Integer> symbolTable, IHeap<Integer> heap) throws DomainException {
         Integer value = 0;
         Integer l = leftExpression.evaluate(symbolTable, heap);
         Integer r = rightExpression.evaluate(symbolTable, heap);

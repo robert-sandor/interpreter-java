@@ -2,7 +2,6 @@ package ro.sandorrobertk94.repository;
 
 import ro.sandorrobertk94.domain.ProgramState;
 import ro.sandorrobertk94.domain.adts.LibList;
-import ro.sandorrobertk94.exceptions.domain.IndexOutOfBoundsException;
 import ro.sandorrobertk94.exceptions.repository.*;
 
 import java.io.*;
@@ -31,6 +30,16 @@ public class Repository implements IRepository {
         }
 
         currentProgramIndex = index;
+    }
+
+    @Override
+    public Integer getCurrentProgramIndex() {
+        return currentProgramIndex;
+    }
+
+    @Override
+    public LibList<ProgramState> getPrograms() {
+        return programs;
     }
 
     @Override

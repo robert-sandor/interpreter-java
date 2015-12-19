@@ -36,7 +36,11 @@ public class Controller {
         this.writeToFile = writeToFile;
     }
 
-    ProgramState oneStep(ProgramState state) throws ControllerException {
+    public IRepository getRepository() {
+        return repository;
+    }
+
+    public ProgramState oneStep(ProgramState state) throws ControllerException {
         IStack<IStatement> stack = state.getExecutionStack();
         IStatement currentStatement = stack.pop();
         currentStatement.execute(state);
@@ -50,7 +54,7 @@ public class Controller {
         return state;
     }
 
-    void allStep(ProgramState state) throws ControllerException {
+    public void allStep(ProgramState state) throws ControllerException {
         while (!state.getExecutionStack().isEmpty()) {
             oneStep(state);
         }
