@@ -10,8 +10,12 @@ import java.io.Serializable;
  */
 public interface IDictionary<K, V> extends Serializable {
     void put(K key, V value) throws ArrayOverflowException;
+
     V get(K key) throws KeyNotFoundException;
+
     Integer size();
+
     boolean isEmpty();
+
     String toString();
 }

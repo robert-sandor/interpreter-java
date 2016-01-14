@@ -12,7 +12,7 @@ public class SkipStatement implements IStatement {
 
     @Override
     public ProgramState execute(ProgramState state) throws DomainException {
-        return state;
+        return null;
     }
 
     @Override

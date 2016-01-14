@@ -10,9 +10,14 @@ import java.io.Serializable;
  */
 public interface IHeap<E> extends Serializable {
     void add(E element) throws ArrayOverflowException;
+
     void update(Integer index, E element) throws IndexOutOfBoundsException;
+
     E get(Integer index) throws IndexOutOfBoundsException;
+
     boolean isEmpty();
+
     Integer size();
+
     String toString();
 }

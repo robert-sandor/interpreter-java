@@ -10,14 +10,9 @@ import java.util.Objects;
  * Created by robert on 12/6/15.
  */
 public class BooleanExpression implements IExpression {
-    public enum Operator {
-        LESS, LESS_OR_EQUAL, EQUAL, NOT_EQUAL, GREATER, GREATER_OR_EQUAL, AND, OR
-    }
-
     private Operator operator;
     private IExpression leftExpression;
     private IExpression rightExpression;
-
     public BooleanExpression(Operator operator, IExpression leftExpression, IExpression rightExpression) {
         this.operator = operator;
         this.leftExpression = leftExpression;
@@ -88,5 +83,9 @@ public class BooleanExpression implements IExpression {
                 break;
         }
         return leftExpression.toString() + op + rightExpression.toString();
+    }
+
+    public enum Operator {
+        LESS, LESS_OR_EQUAL, EQUAL, NOT_EQUAL, GREATER, GREATER_OR_EQUAL, AND, OR
     }
 }

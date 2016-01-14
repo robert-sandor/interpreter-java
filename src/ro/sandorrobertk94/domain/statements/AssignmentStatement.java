@@ -28,7 +28,7 @@ public class AssignmentStatement implements IStatement {
     public ProgramState execute(ProgramState state) throws DomainException {
         state.getSymbolTable().put(variableName, expression.evaluate(state.getSymbolTable(),
                 state.getHeap()));
-        return state;
+        return null;
     }
 
     @Override

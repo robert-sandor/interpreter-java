@@ -27,7 +27,7 @@ public class CompoundStatement implements IStatement {
     public ProgramState execute(ProgramState state) throws DomainException {
         state.getExecutionStack().push(rightStatement);
         state.getExecutionStack().push(leftStatement);
-        return state;
+        return null;
     }
 
     @Override

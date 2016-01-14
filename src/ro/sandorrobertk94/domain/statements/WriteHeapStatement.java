@@ -27,7 +27,7 @@ public class WriteHeapStatement implements IStatement {
         } catch (IndexOutOfBoundsException e) {
             throw new InvalidHeapAddressException();
         }
-        return state;
+        return null;
     }
 
     @Override

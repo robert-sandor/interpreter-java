@@ -69,7 +69,7 @@ public class SwitchStatement implements IStatement {
                         ),
                         statement2
                 ));
-        return state;
+        return null;
     }
 
     @Override

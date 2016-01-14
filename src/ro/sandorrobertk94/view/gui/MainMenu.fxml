@@ -1,0 +1,32 @@
+<?xml version="1.0" encoding="UTF-8"?>
+
+<?import javafx.scene.text.*?>
+<?import javafx.scene.control.*?>
+<?import java.lang.*?>
+<?import javafx.scene.layout.*?>
+
+<AnchorPane maxHeight="-Infinity" maxWidth="-Infinity" minHeight="-Infinity" minWidth="-Infinity" prefHeight="333.0" prefWidth="300.0" xmlns="http://javafx.com/javafx/8" xmlns:fx="http://javafx.com/fxml/1" fx:controller="ro.sandorrobertk94.view.gui.MainMenuController">
+   <children>
+      <VBox layoutX="14.0" layoutY="13.0" prefHeight="374.0" prefWidth="272.0" AnchorPane.bottomAnchor="13.0" AnchorPane.leftAnchor="14.0" AnchorPane.rightAnchor="14.0" AnchorPane.topAnchor="13.0">
+         <children>
+            <Label alignment="CENTER" contentDisplay="CENTER" prefHeight="32.0" prefWidth="269.0" text="Choose an Option :" textAlignment="CENTER">
+               <font>
+                  <Font size="20.0" />
+               </font>
+            </Label>
+            <Separator prefHeight="12.0" prefWidth="272.0" />
+            <Button mnemonicParsing="false" onAction="#insertProgramAction" prefHeight="36.0" prefWidth="270.0" text="Insert Program" />
+            <Separator prefHeight="12.0" prefWidth="272.0" />
+            <Button mnemonicParsing="false" onAction="#oneStepAction" prefHeight="36.0" prefWidth="272.0" text="One Step Execution" />
+            <Separator prefHeight="12.0" prefWidth="272.0" />
+            <Button mnemonicParsing="false" onAction="#allStepAction" prefHeight="36.0" prefWidth="272.0" text="All Step Execution" />
+            <Separator prefHeight="12.0" prefWidth="272.0" />
+            <Button mnemonicParsing="false" onAction="#serializeAction" prefHeight="36.0" prefWidth="272.0" text="Serialize" />
+            <Separator prefHeight="12.0" prefWidth="272.0" />
+            <Button mnemonicParsing="false" onAction="#deserializeAction" prefHeight="36.0" prefWidth="272.0" text="Deserialize" />
+            <Separator prefHeight="12.0" prefWidth="272.0" />
+            <CheckBox fx:id="checkLog" mnemonicParsing="false" onAction="#checkLogAction" prefHeight="18.0" prefWidth="279.0" text="Log to &quot;log.txt&quot;" />
+         </children>
+      </VBox>
+   </children>
+</AnchorPane>

@@ -24,7 +24,7 @@ public class ConsoleUI {
         this.controller = controller;
     }
 
-    public void run() {
+    public void run() throws InterruptedException, ArrayOverflowException {
         while (true) {
             printMainMenu();
 
@@ -65,20 +65,20 @@ public class ConsoleUI {
         }
     }
 
-    private void allStep() {
+    private void allStep() throws InterruptedException {
         try {
-            controller.allStep(controller.getRepository().getCurrentProgram());
+            controller.allStep();
         } catch (ControllerException e) {
             System.err.println("Failed to execute all steps!");
         }
     }
 
     private void oneStep() {
-        try {
-            controller.oneStep(controller.getRepository().getCurrentProgram());
-        } catch (ControllerException e) {
-            System.err.println("Failed to execute step! ExeStack may be empty!");
-        }
+//        try {
+//            controller.oneStep(controller.getRepository().getCurrentProgram());
+//        } catch (ControllerException e) {
+//            System.err.println("Failed to execute step! ExeStack may be empty!");
+//        }
     }
 
     private void setOutputFile() {
@@ -137,7 +137,7 @@ public class ConsoleUI {
         System.out.println(controller.getRepository().getPrograms().toString());
     }
 
-    private void inputProgram() {
+    private void inputProgram() throws ArrayOverflowException {
         IStatement statement;
 
         int id = controller.getRepository().getPrograms().size();
@@ -366,15 +366,31 @@ public class ConsoleUI {
                 String op = br.readLine();
                 BooleanExpression.Operator oper;
                 switch (op) {
-                    case "<": oper = BooleanExpression.Operator.LESS; break;
-                    case "<=": oper = BooleanExpression.Operator.LESS_OR_EQUAL; break;
-                    case "==": oper = BooleanExpression.Operator.EQUAL; break;
-                    case "!=": oper = BooleanExpression.Operator.NOT_EQUAL; break;
-                    case ">": oper = BooleanExpression.Operator.GREATER; break;
-                    case ">=": oper = BooleanExpression.Operator.GREATER_OR_EQUAL; break;
-                    case "&&": oper = BooleanExpression.Operator.AND; break;
-                    case "||": oper = BooleanExpression.Operator.OR; break;
-                    default : {
+                    case "<":
+                        oper = BooleanExpression.Operator.LESS;
+                        break;
+                    case "<=":
+                        oper = BooleanExpression.Operator.LESS_OR_EQUAL;
+                        break;
+                    case "==":
+                        oper = BooleanExpression.Operator.EQUAL;
+                        break;
+                    case "!=":
+                        oper = BooleanExpression.Operator.NOT_EQUAL;
+                        break;
+                    case ">":
+                        oper = BooleanExpression.Operator.GREATER;
+                        break;
+                    case ">=":
+                        oper = BooleanExpression.Operator.GREATER_OR_EQUAL;
+                        break;
+                    case "&&":
+                        oper = BooleanExpression.Operator.AND;
+                        break;
+                    case "||":
+                        oper = BooleanExpression.Operator.OR;
+                        break;
+                    default: {
                         throw new IOException();
                     }
                 }
@@ -400,11 +416,19 @@ public class ConsoleUI {
                 String op = br.readLine();
                 ArithmeticExpression.Operator oper;
                 switch (op) {
-                    case "+": oper = ArithmeticExpression.Operator.ADD; break;
-                    case "-": oper = ArithmeticExpression.Operator.SUB; break;
-                    case "*": oper = ArithmeticExpression.Operator.MUL; break;
-                    case "/": oper = ArithmeticExpression.Operator.DIV; break;
-                    default : {
+                    case "+":
+                        oper = ArithmeticExpression.Operator.ADD;
+                        break;
+                    case "-":
+                        oper = ArithmeticExpression.Operator.SUB;
+                        break;
+                    case "*":
+                        oper = ArithmeticExpression.Operator.MUL;
+                        break;
+                    case "/":
+                        oper = ArithmeticExpression.Operator.DIV;
+                        break;
+                    default: {
                         throw new IOException();
                     }
                 }

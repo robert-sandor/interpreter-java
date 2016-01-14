@@ -2,7 +2,6 @@ package ro.sandorrobertk94.domain.expressions;
 
 import ro.sandorrobertk94.domain.adts.IDictionary;
 import ro.sandorrobertk94.domain.adts.IHeap;
-import ro.sandorrobertk94.domain.adts.IList;
 import ro.sandorrobertk94.exceptions.domain.DivisionByZeroException;
 import ro.sandorrobertk94.exceptions.domain.DomainException;
 
@@ -10,14 +9,9 @@ import ro.sandorrobertk94.exceptions.domain.DomainException;
  * Created by robert on 12/6/15.
  */
 public class ArithmeticExpression implements IExpression {
-    public enum Operator {
-        ADD, SUB, MUL, DIV
-    }
-
     private Operator operator;
     private IExpression leftExpression;
     private IExpression rightExpression;
-
     public ArithmeticExpression(Operator operator, IExpression leftExpression, IExpression rightExpression) {
         this.operator = operator;
         this.leftExpression = leftExpression;
@@ -66,5 +60,9 @@ public class ArithmeticExpression implements IExpression {
                 break;
         }
         return leftExpression.toString() + op + rightExpression.toString();
+    }
+
+    public enum Operator {
+        ADD, SUB, MUL, DIV
     }
 }

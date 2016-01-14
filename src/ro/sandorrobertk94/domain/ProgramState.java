@@ -5,6 +5,9 @@ import ro.sandorrobertk94.domain.adts.IHeap;
 import ro.sandorrobertk94.domain.adts.IList;
 import ro.sandorrobertk94.domain.adts.IStack;
 import ro.sandorrobertk94.domain.statements.IStatement;
+import ro.sandorrobertk94.exceptions.domain.ArrayOverflowException;
+import ro.sandorrobertk94.exceptions.domain.DomainException;
+import ro.sandorrobertk94.exceptions.domain.EmptyStackException;
 
 import java.io.Serializable;
 
@@ -20,13 +23,14 @@ public class ProgramState implements Serializable {
     private IStatement originalProgram;
 
     public ProgramState(Integer id, IStack<IStatement> executionStack, IDictionary<String, Integer> symbolTable,
-                        IList<String> output, IHeap<Integer> heap, IStatement originalProgram) {
+                        IList<String> output, IHeap<Integer> heap, IStatement originalProgram) throws ArrayOverflowException {
         this.id = id;
         this.executionStack = executionStack;
         this.symbolTable = symbolTable;
         this.output = output;
         this.heap = heap;
         this.originalProgram = originalProgram;
+        this.executionStack.push(originalProgram);
     }
 
     public Integer getId() {
@@ -51,6 +55,19 @@ public class ProgramState implements Serializable {
 
     public IStatement getOriginalProgram() {
         return originalProgram;
+    }
+
+    public boolean isNotCompleted() {
+        return !executionStack.isEmpty();
+    }
+
+    public ProgramState oneStep() throws DomainException {
+        if (executionStack.isEmpty()) {
+            throw new EmptyStackException();
+        }
+
+        IStatement currentStatement = executionStack.pop();
+        return currentStatement.execute(this);
     }
 
     @Override

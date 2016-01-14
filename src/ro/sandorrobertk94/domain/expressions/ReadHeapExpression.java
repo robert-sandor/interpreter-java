@@ -2,7 +2,6 @@ package ro.sandorrobertk94.domain.expressions;
 
 import ro.sandorrobertk94.domain.adts.IDictionary;
 import ro.sandorrobertk94.domain.adts.IHeap;
-import ro.sandorrobertk94.domain.adts.IList;
 import ro.sandorrobertk94.exceptions.domain.DomainException;
 
 /**

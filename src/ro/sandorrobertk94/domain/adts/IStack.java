@@ -10,8 +10,12 @@ import java.io.Serializable;
  */
 public interface IStack<E> extends Serializable {
     void push(E element) throws ArrayOverflowException;
+
     E pop() throws EmptyStackException;
+
     E top() throws EmptyStackException;
+
     boolean isEmpty();
+
     String toString();
 }

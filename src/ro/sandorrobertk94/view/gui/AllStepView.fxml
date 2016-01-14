@@ -1,0 +1,23 @@
+<?xml version="1.0" encoding="UTF-8"?>
+
+<?import javafx.scene.control.*?>
+<?import java.lang.*?>
+<?import javafx.scene.layout.*?>
+
+<AnchorPane maxHeight="-Infinity" maxWidth="-Infinity" minHeight="-Infinity" minWidth="-Infinity" prefHeight="400.0" prefWidth="600.0" xmlns="http://javafx.com/javafx/8" xmlns:fx="http://javafx.com/fxml/1" fx:controller="ro.sandorrobertk94.view.gui.AllStepViewController">
+   <children>
+      <VBox layoutX="14.0" layoutY="14.0" prefHeight="373.0" prefWidth="570.0">
+         <children>
+            <TextArea fx:id="textArea" editable="false" prefHeight="321.0" prefWidth="570.0" />
+            <Separator prefHeight="12.0" prefWidth="570.0" />
+            <HBox prefHeight="59.0" prefWidth="570.0">
+               <children>
+                  <Button mnemonicParsing="false" onAction="#allStepAction" prefHeight="53.0" prefWidth="349.0" text="All Step" />
+                  <Separator orientation="VERTICAL" prefHeight="53.0" prefWidth="12.0" />
+                  <Button mnemonicParsing="false" onAction="#backAction" prefHeight="53.0" prefWidth="345.0" text="Back" />
+               </children>
+            </HBox>
+         </children>
+      </VBox>
+   </children>
+</AnchorPane>

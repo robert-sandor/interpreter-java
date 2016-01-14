@@ -27,7 +27,7 @@ public class IfThenStatement implements IStatement {
     @Override
     public ProgramState execute(ProgramState state) throws DomainException {
         state.getExecutionStack().push(new IfStatement(expression, statement, new SkipStatement()));
-        return state;
+        return null;
     }
 
     @Override

@@ -10,5 +10,6 @@ import java.io.Serializable;
  */
 public interface IStatement extends Serializable {
     ProgramState execute(ProgramState state) throws DomainException;
+
     String toString();
 }
