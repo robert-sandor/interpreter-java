@@ -26,31 +26,31 @@ public class InputProgramViewController extends AnchorPane {
     public TextArea textArea;
 
     public void newAction(ActionEvent actionEvent) throws IOException, ArrayOverflowException {
-//        IStatement stmt = newStatement("First");
-        IStatement stmt = new CompoundStatement(
-                new AssignmentStatement("v", new ConstantExpression(10)),
-                new CompoundStatement(
-                        new NewStatement("a", new ConstantExpression(22)),
-                        new CompoundStatement(
-                                new ForkStatement(
-                                        new CompoundStatement(
-                                                new WriteHeapStatement("a", new ConstantExpression(30)),
-                                                new CompoundStatement(
-                                                        new AssignmentStatement("v", new ConstantExpression(32)),
-                                                        new CompoundStatement(
-                                                                new PrintStatement(new VariableExpression("v")),
-                                                                new PrintStatement(new ReadHeapExpression("a"))
-                                                        )
-                                                )
-                                        )
-                                ),
-                                new CompoundStatement(
-                                        new PrintStatement(new VariableExpression("v")),
-                                        new PrintStatement(new ReadHeapExpression("a"))
-                                )
-                        )
-                )
-        );
+        IStatement stmt = newStatement("First");
+//        IStatement stmt = new CompoundStatement(
+//                new AssignmentStatement("v", new ConstantExpression(10)),
+//                new CompoundStatement(
+//                        new NewStatement("a", new ConstantExpression(22)),
+//                        new CompoundStatement(
+//                                new ForkStatement(
+//                                        new CompoundStatement(
+//                                                new WriteHeapStatement("a", new ConstantExpression(30)),
+//                                                new CompoundStatement(
+//                                                        new AssignmentStatement("v", new ConstantExpression(32)),
+//                                                        new CompoundStatement(
+//                                                                new PrintStatement(new VariableExpression("v")),
+//                                                                new PrintStatement(new ReadHeapExpression("a"))
+//                                                        )
+//                                                )
+//                                        )
+//                                ),
+//                                new CompoundStatement(
+//                                        new PrintStatement(new VariableExpression("v")),
+//                                        new PrintStatement(new ReadHeapExpression("a"))
+//                                )
+//                        )
+//                )
+//        );
         List<ProgramState> programs = new ArrayList<>();
         programs.add(new ProgramState(1, new LibStack<>(), new LibDictionary<>(), new LibList<>(), new LibHeap<>(), stmt));
         controller.getRepository().setPrograms(programs);
