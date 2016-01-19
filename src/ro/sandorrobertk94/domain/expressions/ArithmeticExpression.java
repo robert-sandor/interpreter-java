@@ -12,6 +12,7 @@ public class ArithmeticExpression implements IExpression {
     private Operator operator;
     private IExpression leftExpression;
     private IExpression rightExpression;
+
     public ArithmeticExpression(Operator operator, IExpression leftExpression, IExpression rightExpression) {
         this.operator = operator;
         this.leftExpression = leftExpression;

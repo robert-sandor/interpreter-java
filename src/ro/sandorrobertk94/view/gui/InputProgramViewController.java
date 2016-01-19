@@ -26,31 +26,32 @@ public class InputProgramViewController extends AnchorPane {
     public TextArea textArea;
 
     public void newAction(ActionEvent actionEvent) throws IOException, ArrayOverflowException {
-        IStatement stmt = newStatement("First");
-//        IStatement stmt = new CompoundStatement(
-//                new AssignmentStatement("v", new ConstantExpression(10)),
-//                new CompoundStatement(
-//                        new NewStatement("a", new ConstantExpression(22)),
-//                        new CompoundStatement(
-//                                new ForkStatement(
-//                                        new CompoundStatement(
-//                                                new WriteHeapStatement("a", new ConstantExpression(30)),
-//                                                new CompoundStatement(
-//                                                        new AssignmentStatement("v", new ConstantExpression(32)),
-//                                                        new CompoundStatement(
-//                                                                new PrintStatement(new VariableExpression("v")),
-//                                                                new PrintStatement(new ReadHeapExpression("a"))
-//                                                        )
-//                                                )
-//                                        )
-//                                ),
-//                                new CompoundStatement(
-//                                        new PrintStatement(new VariableExpression("v")),
-//                                        new PrintStatement(new ReadHeapExpression("a"))
-//                                )
-//                        )
-//                )
-//        );
+//        IStatement stmt = newStatement("First");
+        IStatement stmt = new CompoundStatement(
+                new AssignmentStatement("v", new ConstantExpression(10)),
+                new CompoundStatement(
+                        new NewStatement("a", new ConstantExpression(22)),
+                        new CompoundStatement(
+                                new ForkStatement(
+                                        new CompoundStatement(
+                                                new WriteHeapStatement("a", new ConstantExpression(30)),
+                                                new CompoundStatement(
+                                                        new AssignmentStatement("v", new ConstantExpression(32)),
+                                                        new CompoundStatement(
+                                                                new PrintStatement(new VariableExpression("v")),
+                                                                new PrintStatement(new ReadHeapExpression("a"))
+                                                        )
+                                                )
+                                        )
+                                ),
+                                new CompoundStatement(
+                                        new PrintStatement(new VariableExpression("v")),
+                                        new PrintStatement(new ReadHeapExpression("a"))
+                                )
+                        )
+                )
+        );
+
         List<ProgramState> programs = new ArrayList<>();
         programs.add(new ProgramState(1, new LibStack<>(), new LibDictionary<>(), new LibList<>(), new LibHeap<>(), stmt));
         controller.getRepository().setPrograms(programs);
@@ -163,7 +164,7 @@ public class InputProgramViewController extends AnchorPane {
     private IStatement newStatement(String content) throws IOException {
         String[] statementsStrings = {"Compound Statement", "Assign Statement", "Print Statement",
                 "If Statement", "While Statement", "IfThen Statement", "Switch Statement", "Skip Statement",
-                "New Statement", "Write Heap", "Fork"};
+                "New Statement", "Write Heap", "Fork", "Increment Statement"};
         ChoiceDialog<String> stmtDialog = new ChoiceDialog<>(statementsStrings[0], statementsStrings);
         stmtDialog.setContentText(content);
         Optional<String> result = stmtDialog.showAndWait();
@@ -223,6 +224,10 @@ public class InputProgramViewController extends AnchorPane {
             }
             if (choice.equals(statementsStrings[10])) {
                 return new ForkStatement(newStatement("Statement: "));
+            }
+            if (choice.equals(statementsStrings[11])) {
+                String varname = newString("Enter variable name : ");
+                return new IncrementStatement(varname);
             }
         }
         throw new IOException();
